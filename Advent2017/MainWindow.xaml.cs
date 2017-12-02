@@ -20,7 +20,7 @@ namespace Advent2017
     /// </summary>
     public partial class MainWindow : Window
     {
-        int LastDay = 1;
+        int LastDay = 2;
         public int Day;
         public MainView _mainView;
         public MainWindow()
@@ -29,6 +29,7 @@ namespace Advent2017
             _mainView = DataContext as MainView;
             InputBox.Focus();
             Day = LastDay;
+            DayBox.Text = Day.ToString();
         }
 
         private void InputBoxKeyUp(object sender, KeyEventArgs e)
@@ -40,6 +41,10 @@ namespace Advent2017
                     case 1:
                         Day1 day1 = new Day1(InputBox.Text);
                         OutputBox.Text = day1.Result();
+                        break;
+                    case 2:
+                        Day2 day2 = new Day2(InputBox.Text);
+                        OutputBox.Text = day2.Result();
                         break;
                     default:
                         OutputBox.Text = "oops, no day choosen";
