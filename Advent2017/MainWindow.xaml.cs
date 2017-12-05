@@ -22,7 +22,7 @@ namespace Advent2017
     {
         int LastDay = 5;
         public int Day;
-        public MainView _mainView;
+        private readonly MainView _mainView;
         public MainWindow()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace Advent2017
                 switch (Day)
                 {
                     case 1:
-                        Day1 day1 = new Day1(InputBox.Text);
+                        Day1 day1 = new Day1(InputBox.Text, _mainView);
                         OutputBox.Text = day1.Result();
                         break;
                     case 2:
@@ -80,6 +80,11 @@ namespace Advent2017
                 }
             }
 
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            _mainView.OutText += "bläh - ";
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace Advent2017
 {
-    public class MainView : INotifyPropertyChanged
+    internal class MainView : INotifyPropertyChanged
     {
         public string _OutText;
         public string OutText

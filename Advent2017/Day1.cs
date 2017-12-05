@@ -9,13 +9,16 @@ namespace Advent2017
     internal class Day1
     {
         private string Input;
-        public Day1(string input)
+        private readonly MainView _mainView;
+        public Day1(string input, MainView mainView)
         {
-            Input = input.Replace("\r\n", "");            
+            Input = input.Replace("\r\n", "");
+            _mainView = mainView;
         }
         
         public string Result()
         {
+            _mainView.OutText = "blärp";
             string st = "" + Input.Last();
             int LastNumber = 0;
             Int32.TryParse(st, out LastNumber);
