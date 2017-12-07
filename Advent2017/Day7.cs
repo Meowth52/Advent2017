@@ -21,6 +21,7 @@ namespace Advent2017
         {
             string Sum = "";
             int Sum2 = 0;
+            int TotalWeight;
             List<string> AllBots = new List<string>();
             List<string> CarriedBots = new List<string>();
             List<TowerBot> Tower = new List<TowerBot>();
@@ -47,7 +48,8 @@ namespace Advent2017
                 if (s.StartsWith(Sum))
                     Tower.Add(new TowerBot(Instructions,Sum));
             }
-            Sum2 = Tower.First().getTotalWeight();
+            TotalWeight = Tower.First().getTotalWeight();
+            Sum2 = Tower.First().getTargetWeight(TotalWeight);
             return "Del 1: " + Sum + " och del 2: " + Sum2.ToString();
         }
     }
