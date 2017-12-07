@@ -13,7 +13,6 @@
         <TextBox x:Name="InputBox" HorizontalAlignment="Left" Height="113" Margin="119,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="476" AcceptsReturn="True" KeyUp="InputBoxKeyUp"/>
         <TextBox x:Name="OutputBox" HorizontalAlignment="Left" Height="197" Margin="119,181,-78,-59" TextWrapping="Wrap" VerticalAlignment="Top" Width="476" Text="{Binding OutText}"/>
         <TextBox x:Name="DayBox" HorizontalAlignment="Left" Height="30" Margin="10,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" AcceptsReturn="True" KeyUp="DayBoxKeyUp"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
 
     </Grid>
 </Window>
