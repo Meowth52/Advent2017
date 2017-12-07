@@ -11,6 +11,7 @@ namespace Advent2017
     {
         private string Input;
         private string[] Instructions;
+        public string HelaJaklaTradet = "";
         public Day7(string input)
         {
             Input = input.Replace("\r\n", "_");
@@ -49,8 +50,9 @@ namespace Advent2017
                     Tower.Add(new TowerBot(Instructions,Sum));
             }
             TotalWeight = Tower.First().getTotalWeight();
+            //HelaJaklaTradet = Tower.First().getPrint(0, "");
             Sum2 = Tower.First().getTargetWeight(TotalWeight);
-            return "Del 1: " + Sum + " och del 2: " + Sum2.ToString();
+            return "Del 1: " + Sum + " och del 2: " + Sum2.ToString() + " " + HelaJaklaTradet;
         }
     }
 }

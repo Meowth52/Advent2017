@@ -14,6 +14,7 @@ namespace Advent2017
         int TotalWeight;
         string Instruction;
         int TestWeight = 0;
+        string TreePrintout;
         List<TowerBot> LargeDisc = new List<TowerBot>();
         public TowerBot(string[] Instructions, string botName)
         {
@@ -43,9 +44,22 @@ namespace Advent2017
         {
             TotalWeight = Weight;
             foreach (TowerBot t in LargeDisc)
-                TotalWeight += t.getTotalWeight();
+                TotalWeight += t.getTotalWeight();            
             return TotalWeight;
         }
+        //public string getPrint(int depth, string PrintSoFar)
+        //{
+        //    depth++;
+        //    foreach (TowerBot t in LargeDisc)
+        //    {
+        //        PrintSoFar += "/r";
+        //        for (int i = depth; i > 0; i--)
+        //            PrintSoFar += "    ";
+        //        PrintSoFar += BotName +", " + Weight.ToString() + ", " + TotalWeight.ToString();
+        //        PrintSoFar += t.getPrint(depth, PrintSoFar);
+        //    }
+        //    return PrintSoFar;
+        //}
         public int getTargetWeight(int ParentTotalWeight)
         {
             int MaybyReturnValue = 0;
