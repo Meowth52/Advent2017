@@ -63,24 +63,41 @@ namespace Advent2017
         public int getTargetWeight(int ParentTotalWeight)
         {
             int MaybyReturnValue = 0;
-            if (LargeDisc.Any())
+            bool CheckCheck = false;
+            int CheckWeight = 0;
+            TowerBot TargetBot = this;
+            List<int> TestWeightList = new List<int>();
+            if (LargeDisc.Count > 2)
             {
                 foreach (TowerBot t in LargeDisc)
                 {
-                    if (t.TotalWeight == ParentTotalWeight / LargeDisc.Count)
-                    {
-                        TestWeight = t.getTargetWeight(TotalWeight);
-                        if (TestWeight > 0)
-                            return TestWeight;
-                        else
-                        {
-                            ;
-                        }
-                    }
-                    if (t.TestWeight > MaybyReturnValue)
-                        MaybyReturnValue = t.TestWeight;
+                    TestWeightList.Add(t.TotalWeight);
                 }
             }
+            foreach(int i in TestWeightList)
+            {
+                if (TestWeightList.IndexOf(i) == TestWeightList.LastIndexOf(i))
+                    TestWeight = i;
+            }
+            if (TestWeight > 0)
+            {
+                foreach(TowerBot t in LargeDisc)
+                {
+                    if (t.TotalWeight == TestWeight)
+                    {
+                        TestWeight = t.getTargetWeight(TotalWeight - Weight);
+                        TargetBot = t;
+                    }
+                }
+                if (TestWeight == 0)
+                    CheckCheck = true;
+            }
+            if (CheckCheck)
+            {
+                MaybyReturnValue = ((TotalWeight - Weight - TargetBot.TotalWeight) / (LargeDisc.Count - 1)-TargetBot.TotalWeight) + TargetBot.Weight;
+            }
+            else
+                MaybyReturnValue = TestWeight;
             return MaybyReturnValue;
         }
     }

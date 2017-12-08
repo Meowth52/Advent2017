@@ -51,8 +51,8 @@ namespace Advent2017
             }
             TotalWeight = Tower.First().getTotalWeight();
             //HelaJaklaTradet = Tower.First().getPrint(0, "");
-            Sum2 = Tower.First().getTargetWeight(TotalWeight);
-            return "Del 1: " + Sum + " och del 2: " + Sum2.ToString() + " " + HelaJaklaTradet;
+            Sum2 = Tower.First().getTargetWeight(0);
+            return "Del 1: " + Sum + " och del 2: " + Sum2.ToString();
         }
     }
 }
