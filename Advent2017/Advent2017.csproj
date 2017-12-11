@@ -55,7 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Coordinate.cs" />
     <Compile Include="Day10.cs" />
+    <Compile Include="Day11.cs" />
     <Compile Include="Day8.cs" />
     <Compile Include="Day9.cs" />
     <Compile Include="TowerBot.cs" />
