@@ -58,9 +58,11 @@
     <Compile Include="Coordinate.cs" />
     <Compile Include="Day10.cs" />
     <Compile Include="Day11.cs" />
+    <Compile Include="Day12.cs" />
     <Compile Include="Day8.cs" />
     <Compile Include="Day9.cs" />
     <Compile Include="TowerBot.cs" />
+    <Compile Include="VillagePerson.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
