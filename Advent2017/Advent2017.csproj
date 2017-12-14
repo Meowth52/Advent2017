@@ -60,8 +60,10 @@
     <Compile Include="Day11.cs" />
     <Compile Include="Day12.cs" />
     <Compile Include="Day13.cs" />
+    <Compile Include="Day14.cs" />
     <Compile Include="Day8.cs" />
     <Compile Include="Day9.cs" />
+    <Compile Include="KnotHash.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="TowerBot.cs" />
     <Compile Include="VillagePerson.cs" />
