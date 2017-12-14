@@ -30,15 +30,12 @@ namespace Advent2017
         {
             return Depth;
         }
-        public void Initiate(int i)
+        public bool WillItCatch(int i)
         {
-            Position = i%Depth+1;
-            Direction = (i/(Depth))%2;
-            if (Direction == 0)
-            {
-                Direction = -1;
-                Position = Depth - Position;
-            }
+            int ehhh = (i - 1) % ((Depth - 1) * 2) + 1; //Jag orkar inte komma på variabelnamn på nattskiftet
+            if (ehhh > Depth)
+                ehhh -= Depth - (ehhh - Depth);
+            return ehhh == 1;
         }
     }
 }

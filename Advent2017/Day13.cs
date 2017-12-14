@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,10 @@ namespace Advent2017
     {
         private string Input;
         private string[] Instructions;
+        Stopwatch stopWatch = new Stopwatch();
         public Day13(string input)
         {
+            stopWatch.Start();
             Input = input.Replace("\r\n", "_");
             Instructions = Input.Split('_');
         }
@@ -54,27 +57,17 @@ namespace Advent2017
             {
                 Caught = false;
                 foreach (KeyValuePair<int, Layer> k in Firewall)
-                    k.Value.Initiate(Sum2);
-                for (int i =  0; i <= Firewall.Last().Key; i++)
-                {
-
-                    if (Firewall.ContainsKey(i))
+                    if (k.Value.WillItCatch(Sum2 + k.Key))
                     {
-                        if (Firewall[i].getPosition() == 1)
-                        {
-                            Caught = true;
-                            break;
-                        }
+                        Caught = true;
+                        break;
                     }
-                    foreach (KeyValuePair<int, Layer> k in Firewall)
-                    {
-                        k.Value.Move();
-                    }
-                }
                 Sum2++;
             }
-            Sum2--;
-            return "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString();
+            Sum2-=2;
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            return "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString() + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";
         }
         
     }
