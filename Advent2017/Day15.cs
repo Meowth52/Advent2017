@@ -39,7 +39,7 @@ namespace Advent2017
                 if (GeneratorA % 65536 == GeneratorB % 65536)
                     Sum++;
             }
-            while (JudgeA.Count<5000000)
+            while (JudgeA.Count < 5000000)
             {
                 GeneratorA2 = GeneratorA2 * 16807 % 2147483647;
                 if (GeneratorA2 % 4 == 0)
@@ -52,7 +52,7 @@ namespace Advent2017
                     JudgeB.Add(GeneratorB2);
             }
             for (int i = 0; i < 5000000; i++)
-                
+
                 if (JudgeA[i] % 65536 == JudgeB[i] % 65536)
                     Sum2++;
             stopWatch.Stop();
@@ -60,5 +60,5 @@ namespace Advent2017
             return "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString() + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";
         }
 
-}
+    }
 }
