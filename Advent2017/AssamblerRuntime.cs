@@ -1,46 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Advent2017
 {
-    class Day18
+    class AssamblerRuntime
     {
-        Stopwatch stopWatch = new Stopwatch();
-        private string Input;
-        private string[] RawInstructions;
+        public int AnswereCounter = 0;
+        int InstructionIndex = 0;
+        long LastSound = 0;
+        long Target = 0;
+        List<int> ReciveBuffert = new List<int>();
+        List<int> SendBuffert = new List<int>();
         private List<string[]> Instructions = new List<string[]>();
-        private List<string[]> Instructions2 = new List<string[]>();
-        public Day18(string input)
+        Dictionary<char, long> Registers = new Dictionary<char, long>();
+        public AssamblerRuntime(List<string[]> instructions)
         {
-            stopWatch.Start();
-            Input = input.Replace("\r\n", "_");
-            RawInstructions = Input.Split('_');
-            foreach (string s in RawInstructions)
-            {
-                if (s != "")
-                {
-                    Instructions.Add(s.Split(' '));
-                    Instructions2.Add(s.Split(' '));
-                }
-            }
-        }
-        public string Result()
-        {
-            long Sum = 0;
-            long Sum2 = 0;
-            int InstructionIndex = 0;
-            long LastSound = 0;
-            long Target = 0;
-            Dictionary<char, long> Registers = new Dictionary<char, long>();
+            Instructions = instructions;
             foreach (string[] s in Instructions)
             {
-                if (!Registers.ContainsKey(s[1][0])&&Char.IsLetter(s[1], 0))
+                if (!Registers.ContainsKey(s[1][0]) && Char.IsLetter(s[1], 0))
                     Registers.Add(s[1][0], 0);
             }
+        }
+        public List<int> run()
+        {
+
+            if (Instructions[InstructionIndex][0] == "rcv" && ReciveBuffert.Count == 0)
+                return SendBuffert;
             while (InstructionIndex < Instructions.Count)
             {
                 string[] s = Instructions[InstructionIndex];
@@ -86,7 +75,7 @@ namespace Advent2017
                         Int64.TryParse(s[1], out Target);
                     else
                         Target = Registers[s[1][0]];
-                    if (Target != 0)
+                    if (ReciveBuffert.Count == 0)
                         break;
                 }
                 if (s[0] == "jgz")
@@ -101,7 +90,7 @@ namespace Advent2017
                             Int64.TryParse(s[2], out Target);
                         else
                             Target = Registers[s[2][0]];
-                        InstructionIndex += Convert.ToInt32( Target);
+                        InstructionIndex += Convert.ToInt32(Target);
                     }
                     else
                     {
@@ -113,12 +102,7 @@ namespace Advent2017
                     InstructionIndex++;
                 }
             }
-            Sum = LastSound;
-
-            stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-            return "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString() + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";
+            return SendBuffert;
         }
-
     }
 }

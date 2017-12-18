@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AssamblerRuntime.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="Day10.cs" />
     <Compile Include="Day11.cs" />
