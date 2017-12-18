@@ -13,7 +13,6 @@ namespace Advent2017
         private string Input;
         private string[] RawInstructions;
         private List<string[]> Instructions = new List<string[]>();
-        private List<string[]> Instructions2 = new List<string[]>();
         public Day18(string input)
         {
             stopWatch.Start();
@@ -24,7 +23,6 @@ namespace Advent2017
                 if (s != "")
                 {
                     Instructions.Add(s.Split(' '));
-                    Instructions2.Add(s.Split(' '));
                 }
             }
         }
@@ -114,7 +112,27 @@ namespace Advent2017
                 }
             }
             Sum = LastSound;
-
+            List<long> Sendbuffert0 = new List<long> { 0};
+            List<long> Sendbuffert1 = new List<long> { 0 };
+            bool InstanceSwitch = false;
+            AssamblerRuntime nr0 = new AssamblerRuntime(Instructions);
+            nr0.setP(false);
+            AssamblerRuntime nr1 = new AssamblerRuntime(Instructions);
+            nr1.setP(true);
+            while ((Sendbuffert0.Any() || Sendbuffert1.Any()) && (!nr0.isTerminated || !nr1.isTerminated) )
+            {
+                if (InstanceSwitch && !nr1.isTerminated)
+                {
+                    Sendbuffert1 = nr1.run(Sendbuffert0);
+                    Sum2 += Sendbuffert1.Count;
+                    InstanceSwitch = false;
+                }
+                else if (!nr0.isTerminated)
+                {
+                    Sendbuffert0 = nr0.run(Sendbuffert1);
+                    InstanceSwitch = true;
+                }
+            }
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
             return "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString() + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";

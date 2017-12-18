@@ -9,11 +9,11 @@ namespace Advent2017
     class AssamblerRuntime
     {
         public int AnswereCounter = 0;
+        public bool isTerminated = false;
         int InstructionIndex = 0;
-        long LastSound = 0;
         long Target = 0;
-        List<int> ReciveBuffert = new List<int>();
-        List<int> SendBuffert = new List<int>();
+        List<long> ReciveBuffert = new List<long>();
+        List<long> SendBuffert = new List<long>();
         private List<string[]> Instructions = new List<string[]>();
         Dictionary<char, long> Registers = new Dictionary<char, long>();
         public AssamblerRuntime(List<string[]> instructions)
@@ -25,9 +25,10 @@ namespace Advent2017
                     Registers.Add(s[1][0], 0);
             }
         }
-        public List<int> run()
+        public List<long> run(List<long> recivebuffert)
         {
-
+            ReciveBuffert = recivebuffert;
+            SendBuffert.Clear();
             if (Instructions[InstructionIndex][0] == "rcv" && ReciveBuffert.Count == 0)
                 return SendBuffert;
             while (InstructionIndex < Instructions.Count)
@@ -35,7 +36,7 @@ namespace Advent2017
                 string[] s = Instructions[InstructionIndex];
                 if (s[0] == "snd")
                 {
-                    LastSound = Registers[s[1][0]];
+                    SendBuffert.Add(Registers[s[1][0]]);
                 }
                 if (s[0] == "set")
                 {
@@ -77,6 +78,11 @@ namespace Advent2017
                         Target = Registers[s[1][0]];
                     if (ReciveBuffert.Count == 0)
                         break;
+                    else
+                    {
+                        Registers[s[1][0]] = ReciveBuffert.First();
+                        ReciveBuffert.RemoveAt(0);
+                    }
                 }
                 if (s[0] == "jgz")
                 {
@@ -102,7 +108,15 @@ namespace Advent2017
                     InstructionIndex++;
                 }
             }
+            isTerminated = true;
             return SendBuffert;
+        }
+        public void setP(bool id)
+        {
+            if (id)
+                Registers['p'] = 1;
+            else
+                Registers['p'] = 0;
         }
     }
 }

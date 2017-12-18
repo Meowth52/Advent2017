@@ -50,7 +50,6 @@ namespace Advent2017
         {
             int MaybyReturnValue = 0;
             bool CheckCheck = false;
-            int CheckWeight = 0;
             TowerBot TargetBot = this;
             List<int> TestWeightList = new List<int>();
             if (LargeDisc.Count > 2)
