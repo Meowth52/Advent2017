@@ -77,7 +77,9 @@ namespace Advent2017
                     else
                         Target = Registers[s[1][0]];
                     if (ReciveBuffert.Count == 0)
-                        break;
+                    {
+                        return SendBuffert;
+                    }
                     else
                     {
                         Registers[s[1][0]] = ReciveBuffert.First();
