@@ -113,7 +113,7 @@ namespace Advent2017
             }
             Sum = LastSound;
             List<long> Sendbuffert0 = new List<long> { 0};
-            List<long> Sendbuffert1 = new List<long> { 0 };
+            List<long> Sendbuffert1 = new List<long> ();
             bool InstanceSwitch = false;
             AssamblerRuntime nr0 = new AssamblerRuntime(Instructions);
             nr0.setP(false);
