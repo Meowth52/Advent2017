@@ -20,7 +20,7 @@ namespace Advent2017
     /// </summary>
     public partial class MainWindow : Window
     {
-        int LastDay = 14;
+        int LastDay = 18;
         public int Day;
         private readonly MainView _mainView;
         public MainWindow()
@@ -105,6 +105,10 @@ namespace Advent2017
                     case 17:
                         Day17 day17 = new Day17(InputBox.Text);
                         OutputBox.Text = day17.Result();
+                        break;
+                    case 18:
+                        Day18 day18 = new Day18(InputBox.Text);
+                        OutputBox.Text = day18.Result();
                         break;
                     default:
                         OutputBox.Text = "oops, no day choosen";
