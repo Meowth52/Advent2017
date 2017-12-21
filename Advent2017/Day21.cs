@@ -94,10 +94,15 @@ namespace Advent2017
             else
                 foreach (PictureSegment2x2 p in Picture2x2)
                     Sum += p.NumberOfTrue();
-
+            StringBuilder bajs = new StringBuilder();
+            foreach(PictureSegment2x2 p in Picture2x2)
+            {
+                bajs.Append(p.GetPrintout());
+                bajs.Append("\r\n");
+            }
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
-            return "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString() + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";
+            return bajs + "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString() + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";
         }
 
     }

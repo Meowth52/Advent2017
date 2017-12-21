@@ -8,11 +8,11 @@ namespace Advent2017
 {
     class PictureSegment3x3
     {
-        bool[,] Grid = new bool[3,3];
+        bool[,] Grid = new bool[3, 3];
         public PictureSegment3x3(string[] s)
         {
-            string NoSlashString = s[0].Replace("/","");
-            for(int i = 0; i < 9; i++)
+            string NoSlashString = s[0].Replace("/", "");
+            for (int i = 0; i < 9; i++)
             {
                 if (NoSlashString[i] == '#')
                     Grid[(i / 3), (i % 3)] = true;
@@ -33,16 +33,16 @@ namespace Advent2017
         }
         public bool isMatch(string s)
         {
-            bool[,] MatchGrid = new bool[3,3];
+            bool[,] MatchGrid = new bool[3, 3];
             int MatchNumber;
             string NoSlashString = s.Replace("/", "");
             MatchNumber = 0;
             for (int i = 0; i < 9; i++)
             {
                 if (NoSlashString[i] == '#')
-                    Grid[(i / 3), (i % 3)] = true;
+                    MatchGrid[(i / 3), (i % 3)] = true;
                 else
-                    Grid[(i / 3), (i % 3)] = false;
+                    MatchGrid[(i / 3), (i % 3)] = false;
             }
             for (int x = 0; x <= 2; x++)
                 for (int y = 0; y <= 2; y++)
@@ -60,14 +60,14 @@ namespace Advent2017
             MatchNumber = 0;
             for (int x = 0; x <= 2; x++)
                 for (int y = 0; y <= 2; y++)
-                    if (Grid[x, y] == MatchGrid[(y-2)*-1, (x-2)*-1])
+                    if (Grid[x, y] == MatchGrid[(y - 2) * -1, (x - 2) * -1])
                         MatchNumber++;
             if (MatchNumber == 9)
                 return true;
             MatchNumber = 0;
             for (int x = 0; x <= 2; x++)
                 for (int y = 0; y <= 2; y++)
-                    if (Grid[x, y] == MatchGrid[(y-2)*-1, (x-2)*-1])
+                    if (Grid[x, y] == MatchGrid[(x - 2) * -1, (y - 2) * -1])
                         MatchNumber++;
             if (MatchNumber == 9)
                 return true;
@@ -80,6 +80,17 @@ namespace Advent2017
                 if (b)
                     ReturnValue++;
             return ReturnValue;
+        }
+        public string GetPrintout()
+        {
+            StringBuilder s = new StringBuilder();
+
+            foreach (bool b in Grid)
+                if (b)
+                    s.Append('#');
+                else
+                    s.Append('.');
+            return s.ToString();
         }
     }
 }
