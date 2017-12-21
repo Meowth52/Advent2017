@@ -68,11 +68,14 @@
     <Compile Include="Day18.cs" />
     <Compile Include="Day19.cs" />
     <Compile Include="Day20.cs" />
+    <Compile Include="Day21.cs" />
     <Compile Include="Day8.cs" />
     <Compile Include="Day9.cs" />
     <Compile Include="KnotHash.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Particle.cs" />
+    <Compile Include="PictureSegment2x2.cs" />
+    <Compile Include="PictureSegment3x3.cs" />
     <Compile Include="TowerBot.cs" />
     <Compile Include="VillagePerson.cs" />
     <Page Include="MainWindow.xaml">
