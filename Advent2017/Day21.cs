@@ -48,7 +48,7 @@ namespace Advent2017
             int Sum2 = 0;
             int NumberOfMatches;
             bool Flip = true;
-            for(int i = 1; i <= 2; i++)
+            for(int i = 1; i <= 5; i++)
             {
                 if (Flip)
                 {

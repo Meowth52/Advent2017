@@ -46,7 +46,7 @@ namespace Advent2017
             MatchNumber = 0;
             for (int x = 0; x <= 1; x++)
                 for (int y = 0; y <= 1; y++)
-                    if (Grid[x, y] == MatchGrid[y, x])
+                    if (Grid[x, y] == MatchGrid[y, (x - 1) * -1])
                         MatchNumber++;
             if (MatchNumber == 4)
                 return true;
@@ -60,6 +60,27 @@ namespace Advent2017
             MatchNumber = 0;
             for (int x = 0; x <= 1; x++)
                 for (int y = 0; y <= 1; y++)
+                    if (Grid[x, y] == MatchGrid[(y - 1) * -1, x])
+                        MatchNumber++;
+            if (MatchNumber == 4)
+                return true;
+            MatchNumber = 0;
+            for (int x = 0; x <= 1; x++)
+                for (int y = 0; y <= 1; y++)
+                    if (Grid[x, y] == MatchGrid[(x - 1) * -1,y])
+                        MatchNumber++;
+            if (MatchNumber == 4)
+                return true;
+            MatchNumber = 0;
+            for (int x = 0; x <= 1; x++)
+                for (int y = 0; y <= 1; y++)
+                    if (Grid[x, y] == MatchGrid[x, (y - 1) * -1])
+                        MatchNumber++;
+            if (MatchNumber == 4)
+                return true;
+            MatchNumber = 0;
+            for (int x = 0; x <= 1; x++)
+                for (int y = 0; y <= 1; y++)
                     if (Grid[x, y] == MatchGrid[(y - 1) * -1, (x - 1) * -1])
                         MatchNumber++;
             if (MatchNumber == 4)
@@ -67,7 +88,14 @@ namespace Advent2017
             MatchNumber = 0;
             for (int x = 0; x <= 1; x++)
                 for (int y = 0; y <= 1; y++)
-                    if (Grid[x, y] == MatchGrid[(x - 1) * -1, (y - 1) * -1])
+                    if (Grid[x, y] == MatchGrid[(x - 1) * -1,(y - 1) * -1])
+                        MatchNumber++;
+            if (MatchNumber == 4)
+                return true;
+            MatchNumber = 0;
+            for (int x = 0; x <= 1; x++)
+                for (int y = 0; y <= 1; y++)
+                    if (Grid[x, y] == MatchGrid[y,x])
                         MatchNumber++;
             if (MatchNumber == 4)
                 return true;

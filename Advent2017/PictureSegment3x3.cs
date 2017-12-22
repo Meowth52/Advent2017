@@ -46,7 +46,7 @@ namespace Advent2017
             }
             for (int x = 0; x <= 2; x++)
                 for (int y = 0; y <= 2; y++)
-                    if (Grid[x, y] == MatchGrid[y, x])
+                    if (Grid[x, y] == MatchGrid[y, (x - 2) * -1])
                         MatchNumber++;
             if (MatchNumber == 9)
                 return true;
@@ -60,7 +60,35 @@ namespace Advent2017
             MatchNumber = 0;
             for (int x = 0; x <= 2; x++)
                 for (int y = 0; y <= 2; y++)
+                    if (Grid[x, y] == MatchGrid[(y - 2) * -1, x])
+                        MatchNumber++;
+            if (MatchNumber == 9)
+                return true;
+            MatchNumber = 0;
+            for (int x = 0; x <= 2; x++)
+                for (int y = 0; y <= 2; y++)
+                    if (Grid[x, y] == MatchGrid[(x - 2) * -1, y])
+                        MatchNumber++;
+            if (MatchNumber == 9)
+                return true;
+            MatchNumber = 0;
+            for (int x = 0; x <= 2; x++)
+                for (int y = 0; y <= 2; y++)
+                    if (Grid[x, y] == MatchGrid[x, (y - 2) * -1])
+                        MatchNumber++;
+            if (MatchNumber == 9)
+                return true;
+            MatchNumber = 0;
+            for (int x = 0; x <= 2; x++)
+                for (int y = 0; y <= 2; y++)
                     if (Grid[x, y] == MatchGrid[(y - 2) * -1, (x - 2) * -1])
+                        MatchNumber++;
+            if (MatchNumber == 9)
+                return true;
+            MatchNumber = 0;
+            for (int x = 0; x <= 2; x++)
+                for (int y = 0; y <= 2; y++)
+                    if (Grid[x, y] == MatchGrid[y,x])
                         MatchNumber++;
             if (MatchNumber == 9)
                 return true;
