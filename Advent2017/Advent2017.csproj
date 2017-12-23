@@ -70,6 +70,7 @@
     <Compile Include="Day20.cs" />
     <Compile Include="Day21.cs" />
     <Compile Include="Day22.cs" />
+    <Compile Include="Day23.cs" />
     <Compile Include="Day8.cs" />
     <Compile Include="Day9.cs" />
     <Compile Include="KnotHash.cs" />
