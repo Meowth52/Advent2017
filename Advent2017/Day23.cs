@@ -22,7 +22,7 @@ namespace Advent2017
             {
                 if (s != "")
                 {
-                    Instructions.Add(s.Split(' '));
+                    Instructions.Add(s.Split('/'));
                 }
             }
         }

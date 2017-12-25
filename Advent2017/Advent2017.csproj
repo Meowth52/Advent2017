@@ -71,6 +71,8 @@
     <Compile Include="Day21.cs" />
     <Compile Include="Day22.cs" />
     <Compile Include="Day23.cs" />
+    <Compile Include="Day24.cs" />
+    <Compile Include="Day25.cs" />
     <Compile Include="Day8.cs" />
     <Compile Include="Day9.cs" />
     <Compile Include="KnotHash.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="PictureSegment2x2.cs" />
     <Compile Include="PictureSegment3x3.cs" />
     <Compile Include="TowerBot.cs" />
+    <Compile Include="Turing.cs" />
     <Compile Include="VillagePerson.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
