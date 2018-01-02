@@ -30,17 +30,41 @@ namespace Advent2017
         }
         public string Result()
         {
-            long Sum = 0;
-            long Sum2 = 0;
-            foreach(List<string> s in Instructions)
-            {
-                s.Sort();
-            }
+            int Sum = 0;
+            int Sum2 = 0;
+            int SumCompare = 0;
+            List<BridgeElement> BridgeElements = new List<BridgeElement>();
+            List<List<int>> ReturnLists = new List<List<int>>();
+            List<int> ReturnList = new List<int>();
             foreach (List<string> s in Instructions)
             {
-
+                BridgeElements.Add(new BridgeElement(s));
             }
-                stopWatch.Stop();
+            foreach(BridgeElement b in BridgeElements)
+            {
+                if (b.Contains(0))
+                {
+                    List<BridgeElement> TempList = new List<BridgeElement>(BridgeElements);
+                    TempList.Remove(b);
+                    SumCompare = b.BridgeDiver(TempList, 0);
+                    if (SumCompare > Sum)
+                        Sum=SumCompare;
+                    ReturnLists.Add(b.BridgeJumper(TempList, 0));
+                }
+            }
+            foreach (List<int> l in ReturnLists)
+            {
+                if (l.Count > ReturnList.Count)
+                {
+                    ReturnList = new List<int>(l);
+                }
+                else if (l.Count == ReturnList.Count && l.Sum() > ReturnList.Sum())
+                {
+                    ReturnList = new List<int>(l);
+                }
+            }
+            Sum2 = ReturnList.Sum();
+            stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
             return "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString() + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";
         }

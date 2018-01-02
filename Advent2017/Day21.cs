@@ -17,6 +17,7 @@ namespace Advent2017
         private Dictionary<string, string> BigEnhancementRules = new Dictionary<string, string>();
         List<PictureSegment2x2> Picture2x2 = new List<PictureSegment2x2>();
         List<PictureSegment3x3> Picture3x3 = new List<PictureSegment3x3>();
+        List<string> BigPicture = new List<string>();
         public Day21(string input)
         {
             stopWatch.Start();
@@ -67,6 +68,14 @@ namespace Advent2017
                                 Picture2x2.Add(new PictureSegment2x2(r.Value.Substring(12, 2) + r.Value.Substring(17, 2)));
                             }
                         }
+                    }
+                    while (BigPicture.Count < Math.Sqrt(Picture2x2.Count))
+                    {
+                        BigPicture.Add("");
+                    }
+                    for (int n = 0; n <= Picture2x2.Count;i++)
+                    {
+                        BigPicture[n + 0]+="ss";
                     }
                     Flip = false;
                 }
