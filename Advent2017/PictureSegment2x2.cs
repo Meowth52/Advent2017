@@ -52,7 +52,6 @@ namespace Advent2017
                 else
                     s.Append('.');
             return s.ToString();
-
         }
         public bool isMatch(string s)
         {

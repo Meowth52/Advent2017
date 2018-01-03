@@ -31,6 +31,39 @@ namespace Advent2017
                     Grid[(i / 3), (i % 3)] = false;
             }
         }
+        public string PrintOne()
+        {
+            StringBuilder s = new StringBuilder();
+
+            for (int i = 0; i <= 2; i++)
+                if (Grid[0, i])
+                    s.Append('#');
+                else
+                    s.Append('.');
+            return s.ToString();
+        }
+        public string PrintTwo()
+        {
+            StringBuilder s = new StringBuilder();
+
+            for (int i = 0; i <= 2; i++)
+                if (Grid[1, i])
+                    s.Append('#');
+                else
+                    s.Append('.');
+            return s.ToString();
+        }
+        public string PrintThree()
+        {
+            StringBuilder s = new StringBuilder();
+
+            for (int i = 0; i <= 2; i++)
+                if (Grid[2, i])
+                    s.Append('#');
+                else
+                    s.Append('.');
+            return s.ToString();
+        }
         public bool isMatch(string s)
         {
             bool[,] MatchGrid = new bool[3, 3];

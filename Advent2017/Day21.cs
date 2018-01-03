@@ -13,7 +13,7 @@ namespace Advent2017
         private string Input;
         Stopwatch stopWatch = new Stopwatch();
         private string[] RawInstructions;
-        private Dictionary<string,string> SmallEnhancementRules = new Dictionary<string, string>();
+        private Dictionary<string, string> SmallEnhancementRules = new Dictionary<string, string>();
         private Dictionary<string, string> BigEnhancementRules = new Dictionary<string, string>();
         List<PictureSegment2x2> Picture2x2 = new List<PictureSegment2x2>();
         List<PictureSegment3x3> Picture3x3 = new List<PictureSegment3x3>();
@@ -39,8 +39,9 @@ namespace Advent2017
                     }
                 }
             }
-            Picture3x3.Add(new PictureSegment3x3(".#./..#/###"));
-
+            BigPicture.Add(".#.");
+            BigPicture.Add("..#");
+            BigPicture.Add("###");
         }
 
         public string Result()
@@ -48,13 +49,19 @@ namespace Advent2017
             int Sum = 0;
             int Sum2 = 0;
             int NumberOfMatches;
-            bool Flip = true;
-            for(int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 18; i++)
             {
-                if (Flip)
+                if (BigPicture.Count % 2 != 0)
                 {
                     NumberOfMatches = 0;
                     Picture2x2.Clear();
+                    Picture3x3.Clear();
+                    for (int n = 0; n < Math.Pow(BigPicture.Count / 3, 2); n++)
+                    {
+                        int y = (n / (BigPicture.Count / 3)) * 3;
+                        int x = (n % (BigPicture.Count / 3)) * 3;
+                        Picture3x3.Add(new PictureSegment3x3(BigPicture[y+0].Substring(x, 3)+ BigPicture[y + 1].Substring(x, 3) + BigPicture[y + 2].Substring(x, 3)));
+                    }
                     foreach (PictureSegment3x3 p in Picture3x3)
                     {
                         foreach (KeyValuePair<string, string> r in BigEnhancementRules)
@@ -69,20 +76,29 @@ namespace Advent2017
                             }
                         }
                     }
-                    while (BigPicture.Count < Math.Sqrt(Picture2x2.Count))
+                    BigPicture.Clear();
+                    int PictureCount = (int)Math.Sqrt(Picture2x2.Count);
+                    while (BigPicture.Count < PictureCount * 2)
                     {
                         BigPicture.Add("");
                     }
-                    for (int n = 0; n <= Picture2x2.Count;i++)
+                    for (int n = 0; n < Picture2x2.Count; n++)
                     {
-                        BigPicture[n + 0]+="ss";
+                        BigPicture[(n / PictureCount) * 2 + 0] += Picture2x2[n].PrintOne();
+                        BigPicture[(n / PictureCount) * 2 + 1] += Picture2x2[n].PrintTwo();
                     }
-                    Flip = false;
                 }
                 else
                 {
                     NumberOfMatches = 0;
                     Picture3x3.Clear();
+                    Picture2x2.Clear();
+                    for (int n = 0; n < Math.Pow(BigPicture.Count / 2, 2); n++)
+                    {
+                        int y = (n / (BigPicture.Count / 2)) * 2;
+                        int x = (n % (BigPicture.Count / 2))*2;
+                        Picture2x2.Add(new PictureSegment2x2(BigPicture[y + 0].Substring(x, 2) + BigPicture[y + 1].Substring(x, 2)));
+                    }
                     foreach (PictureSegment2x2 p in Picture2x2)
                     {
                         foreach (KeyValuePair<string, string> r in SmallEnhancementRules)
@@ -94,24 +110,29 @@ namespace Advent2017
                             }
                         }
                     }
-                    Flip = true;
+                    BigPicture.Clear();
+                    int PictureCount = (int)Math.Sqrt(Picture3x3.Count);
+                    while (BigPicture.Count < PictureCount * 3)
+                    {
+                        BigPicture.Add("");
+                    }
+                    for (int n = 0; n < Picture3x3.Count; n++)
+                    {
+                        BigPicture[(n / PictureCount) * 3 + 0] += Picture3x3[n].PrintOne();
+                        BigPicture[(n / PictureCount) * 3 + 1] += Picture3x3[n].PrintTwo();
+                        BigPicture[(n / PictureCount) * 3 + 2] += Picture3x3[n].PrintThree();
+                    }
                 }
             }
-            if (Flip)
-                foreach (PictureSegment3x3 p in Picture3x3)
-                    Sum += p.NumberOfTrue();
-            else
-                foreach (PictureSegment2x2 p in Picture2x2)
-                    Sum += p.NumberOfTrue();
-            StringBuilder bajs = new StringBuilder();
-            foreach(PictureSegment2x2 p in Picture2x2)
+            foreach (string s in BigPicture)
             {
-                bajs.Append(p.GetPrintout());
-                bajs.Append("\r\n");
+                foreach (char c in s)
+                    if (c == '#')
+                        Sum++;
             }
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
-            return bajs + "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString() + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";
+            return "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString() + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";
         }
 
     }
