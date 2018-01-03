@@ -49,7 +49,8 @@ namespace Advent2017
             int Sum = 0;
             int Sum2 = 0;
             int NumberOfMatches;
-            for (int i = 1; i <= 18; i++)
+            string PartResult = "";
+            for (int i = 1; i <= 7; i++)
             {
                 if (BigPicture.Count % 2 != 0)
                 {
@@ -123,6 +124,14 @@ namespace Advent2017
                         BigPicture[(n / PictureCount) * 3 + 2] += Picture3x3[n].PrintThree();
                     }
                 }
+                Sum2 = 0;
+                foreach (string s in BigPicture)
+                {
+                    foreach (char c in s)
+                        if (c == '#')
+                            Sum2++;
+                }
+                PartResult += Sum2.ToString() + "\r\n";
             }
             foreach (string s in BigPicture)
             {
@@ -132,7 +141,7 @@ namespace Advent2017
             }
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
-            return "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString() + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";
+            return "Del 1: " + Sum.ToString() + " och del 2: " + PartResult + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";
         }
 
     }
