@@ -50,7 +50,7 @@ namespace Advent2017
             int Sum2 = 0;
             int NumberOfMatches;
             string PartResult = "";
-            for (int i = 1; i <= 7; i++)
+            for (int i = 1; i <= 6; i++)
             {
                 if (BigPicture.Count % 2 != 0)
                 {
@@ -83,10 +83,16 @@ namespace Advent2017
                     {
                         BigPicture.Add("");
                     }
-                    for (int n = 0; n < Picture2x2.Count; n++)
+                    for (int n = 0; n < Picture2x2.Count; n+=4)
                     {
                         BigPicture[(n / PictureCount) * 2 + 0] += Picture2x2[n].PrintOne();
                         BigPicture[(n / PictureCount) * 2 + 1] += Picture2x2[n].PrintTwo();
+                        BigPicture[(n / PictureCount) * 2 + 0] += Picture2x2[n+1].PrintOne();
+                        BigPicture[(n / PictureCount) * 2 + 1] += Picture2x2[n+1].PrintTwo();
+                        BigPicture[((n + 2) / PictureCount) * 2 + 0] += Picture2x2[n + 2].PrintOne();
+                        BigPicture[((n + 2) / PictureCount) * 2 + 1] += Picture2x2[n + 2].PrintTwo();
+                        BigPicture[((n + 2) / PictureCount) * 2 + 0] += Picture2x2[n + 3].PrintOne();
+                        BigPicture[((n + 2) / PictureCount) * 2 + 1] += Picture2x2[n + 3].PrintTwo();
                     }
                 }
                 else
