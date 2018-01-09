@@ -22,7 +22,7 @@ namespace Advent2017
             {
                 if (s != "")
                 {
-                    Instructions.Add(s.Split('/'));
+                    Instructions.Add(s.Split(' '));
                 }
             }
         }
@@ -30,74 +30,64 @@ namespace Advent2017
         {
             long Sum = 0;
             long Sum2 = 0;
-            Dictionary<char, long> Registers = new Dictionary<char, long>(){ {'a',0}, { 'b', 0 }, { 'c', 0 }, { 'd', 0 }, { 'e', 0 }, { 'f', 0 }, { 'g', 0 }, { 'h', 0 }};
+            Dictionary<char, long> Registers = new Dictionary<char, long>(){ {'a',0}, { 'b', 0 }, { 'c', 0 }, { 'd', 0 }, { 'e', 0 }, { 'f', 0 }, { 'g', 0 }, { 'h', 0 }, { '1', 1 } };
             int InstructionIndex = 0;
-            string Keyword;
+            char Keyword;
             char Target;
             long Value;
             while (InstructionIndex < Instructions.Count)
             {
                 string[] s = Instructions[InstructionIndex];
-                Keyword = s[0];
+                Keyword = s[0][2];
                 Target = s[1][0];
                 if (char.IsNumber(s[2], 0) || s[2][0] == '-')
                     Int64.TryParse(s[2], out Value);
                 else
                     Value = Registers[s[2][0]];
-                if (Keyword == "set")
+                switch (Keyword)
                 {
-                    Registers[Target] = Value;
-                }
-                if (Keyword == "sub")
-                {
-                    Registers[Target] -= Value;
-                }
-                if (Keyword == "mul")
-                {
-                    Registers[Target] *= Value;
-                    Sum++;
-                }
-                if (Keyword == "jnz" && ((Char.IsLetter(s[1], 0) && Registers[s[1][0]] != 0) || Char.IsNumber(s[1], 0)))
-                {
-                    InstructionIndex += (int)Value;
-                }
-                else
-                    InstructionIndex++;
+                    case 't':
+                        Registers[Target] = Value;
+                        InstructionIndex++;
+                        break;
+                    case 'b':
+                        Registers[Target] -= Value;
+                        InstructionIndex++;
+                        break;
+                    case 'l':
+                        Registers[Target] *= Value;
+                        Sum++;
+                        InstructionIndex++;
+                        break;
+                    case 'z':
+                        if (Registers[s[1][0]] != 0)
+                        {
+                            InstructionIndex += (int)Value;
+                        }
+                        else
+                            InstructionIndex++;
+                        break;
+                    default:
+                        ;
+                        break;
 
+                }
             }
             //Part 2
-            Registers = new Dictionary<char, long>() { { 'a', 1 }, { 'b', 0 }, { 'c', 0 }, { 'd', 0 }, { 'e', 0 }, { 'f', 0 }, { 'g', 0 }, { 'h', 0 } };
-            InstructionIndex = 0;
-            while (InstructionIndex < Instructions.Count)
+            float x = 0;
+            for (long b = 91117; b < 108100; b += 17)
             {
-                Sum2++;
-                string[] s = Instructions[InstructionIndex];
-                Keyword = s[0];
-                Target = s[1][0];
-                if (char.IsNumber(s[2], 0) || s[2][0] == '-')
-                    Int64.TryParse(s[2], out Value);
-                else
-                    Value = Registers[s[2][0]];
-                if (Keyword == "set")
+                bool isPrime = true;
+                for (long i = 2; i < b; i++)
                 {
-                    Registers[Target] = Value;
+                    x = b % i;
+                    if (x == 0)
+                        isPrime = false;
                 }
-                if (Keyword == "sub")
-                {
-                    Registers[Target] -= Value;
-                }
-                if (Keyword == "mul")
-                {
-                    Registers[Target] *= Value;
-                }
-                if (Keyword == "jnz" && ((Char.IsLetter(s[1], 0) && Registers[s[1][0]] != 0) || Char.IsNumber(s[1], 0)))
-                {
-                    InstructionIndex += (int)Value;
-                }
-                else
-                    InstructionIndex++;
-            }
-                stopWatch.Stop();
+                if (!isPrime)
+                    Sum2++;
+            }           
+            stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
             return "Del 1: " + Sum.ToString() + " och del 2: " + Sum2.ToString() + " Executed in " + ts.TotalMilliseconds.ToString() + " ms";
         }
