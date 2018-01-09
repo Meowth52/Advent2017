@@ -82,7 +82,10 @@ namespace Advent2017
                 {
                     x = b % i;
                     if (x == 0)
+                    {
                         isPrime = false;
+                        break;
+                    }
                 }
                 if (!isPrime)
                     Sum2++;
